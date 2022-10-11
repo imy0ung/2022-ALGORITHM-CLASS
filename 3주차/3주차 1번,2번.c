@@ -4,7 +4,7 @@
 #include <time.h>
 #pragma warning (disable:4996)
 
-// 3ÁÖÂ÷ »óÇâ½Ä Èü
+// 3ÃÃ–Ã‚Ã· Â»Ã³Ã‡Ã¢Â½Ã„ ÃˆÃ¼
 
 int heap[100000];
 int sz = 0;
