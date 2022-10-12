@@ -4,7 +4,7 @@
 #include <time.h>
 #pragma warning (disable:4996)
 
-// 4ÁÖÂ÷ ÇÕº´Á¤·Ä
+// 4ÃÃ–Ã‚Ã· Ã‡Ã•ÂºÂ´ÃÂ¤Â·Ã„
 
 int arr[100000];
 int tmp[100000];
