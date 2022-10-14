@@ -4,7 +4,7 @@
 #include <time.h>
 #pragma warning (disable:4996)
 
-// 4ÁÖÂ÷ ÄüÁ¤·Ä
+// 4ì£¼ì°¨ í€µì •ë ¬
 
 void quickSort(int* arr, int st, int en) {
 	if (st + 1 >= en) return;
@@ -12,9 +12,9 @@ void quickSort(int* arr, int st, int en) {
 	int lchild = st + 1; int rchild = en - 1;
 
 	while (1) {
-		while (lchild <= rchild && arr[pivot] >= arr[lchild]) lchild++; //pivotº¸´Ù Å«°Å detecting
-		while (lchild <= rchild && arr[pivot] <= arr[rchild]) rchild--; //pivotº¸´Ù ÀÛÀº°Å detecting
-		if (lchild > rchild) break; // l°ú rÀÌ ±³Â÷ÇÑ ¼ø°£ break
+		while (lchild <= rchild && arr[pivot] >= arr[lchild]) lchild++; //pivotë³´ë‹¤ í°ê±° detecting
+		while (lchild <= rchild && arr[pivot] <= arr[rchild]) rchild--; //pivotë³´ë‹¤ ì‘ì€ê±° detecting
+		if (lchild > rchild) break; // lê³¼ rì´ êµì°¨í•œ ìˆœê°„ break
 		int tmp = arr[lchild];
 		arr[lchild] = arr[rchild];
 		arr[rchild] = tmp;
