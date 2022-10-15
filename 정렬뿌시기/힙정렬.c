@@ -3,28 +3,28 @@
 #include <math.h>
 #include <time.h>
 #pragma warning (disable:4996)
-// 4ÁÖÂ÷ ÄüÁ¤·Ä
+// 4ì£¼ì°¨ í€µì •ë ¬
 
 int heap[100000];
 int sz = 0;
 
 void push(int x) {
-	heap[++sz] = x; // Èü ¹è¿­¿¡ µ¥ÀÌÅÍ »ğÀÔ
+	heap[++sz] = x; // í™ ë°°ì—´ì— ë°ì´í„° ì‚½ì…
 	int idx = sz;
 	while (idx != 1) {
-		int parent = idx / 2; // ºÎ¸ğ³ëµå // Á¦¹ß IDX¸¦ SZ·Î ¾²Áö¸»ÀÚ..
-		if (heap[parent] < heap[idx]) break; // ÈüÀ» ¸¸Á·½ÃÅ°¸é Á¾·á
+		int parent = idx / 2; // ë¶€ëª¨ë…¸ë“œ // ì œë°œ IDXë¥¼ SZë¡œ ì“°ì§€ë§ì..
+		if (heap[parent] < heap[idx]) break; // í™ì„ ë§Œì¡±ì‹œí‚¤ë©´ ì¢…ë£Œ
 		int tmp = heap[parent];
 		heap[parent] = heap[idx];
-		heap[idx] = tmp; // º¯°æ
-		idx = parent; // ¹İº¹
+		heap[idx] = tmp; // ë³€ê²½
+		idx = parent; // ë°˜ë³µ
 	}
 }
 
 void pop() {
-	heap[1] = heap[sz--]; // º¯°æ
+	heap[1] = heap[sz--]; // ë³€ê²½
 	int idx = 1;
-	// idx * 2°¡ szº¸´Ù Å©´Ù´Â °ÍÀº ÇØ´ç ³ëµå°¡ ´Ü¸»³ëµå¶ó´Â °Í
+	// idx * 2ê°€ szë³´ë‹¤ í¬ë‹¤ëŠ” ê²ƒì€ í•´ë‹¹ ë…¸ë“œê°€ ë‹¨ë§ë…¸ë“œë¼ëŠ” ê²ƒ
 	while (2 * idx <= sz) {
 		int lc = 2 * idx; int rc = 2 * idx + 1;
 		int min_c = lc;
@@ -32,7 +32,7 @@ void pop() {
 		if (heap[idx] <= heap[min_c]) break;
 		int tmp = heap[idx];
 		heap[idx] = heap[min_c];
-		heap[min_c] = tmp; // ³»·Á°¡¸é¼­ °ª º¯°æ
+		heap[min_c] = tmp; // ë‚´ë ¤ê°€ë©´ì„œ ê°’ ë³€ê²½
 		idx = min_c;
 	}
 }
