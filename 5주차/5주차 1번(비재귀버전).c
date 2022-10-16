@@ -3,7 +3,7 @@
 #include <math.h>
 #include <time.h>
 #pragma warning (disable:4996)
-// 5ÁÖÂ÷ ÄüÁ¤·Ä
+// 5ÃÃ–Ã‚Ã· Ã„Ã¼ÃÂ¤Â·Ã„
 
 int ans;
 
