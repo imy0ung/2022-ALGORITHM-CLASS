@@ -3,15 +3,15 @@
 #include <math.h>
 #include <time.h>
 #pragma warning (disable:4996)
-// 5ÁÖÂ÷ ÄüÁ¤·Ä
+// 5ì£¼ì°¨ í€µì •ë ¬
 
 int ans;
 
 void find(int *arr, int st, int en, int key) {
 	int mid = (st + en) / 2;
 	if (arr[mid] <= key)
-		ans = mid; // ¾îÂ÷ÇÇ °¡ÀåÅ«°ªÀÌ´Ï±î..
-	if (st >= en) return; // base condition ¿©±â¿¡ ¸¶Áö¸·¿¡ ºñ±³°¡¾ÈµÈ´Ù..
+		ans = mid; // ì–´ì°¨í”¼ ê°€ì¥í°ê°’ì´ë‹ˆê¹Œ..
+	if (st >= en) return; // base condition ì—¬ê¸°ì— ë§ˆì§€ë§‰ì— ë¹„êµê°€ì•ˆëœë‹¤..
 	if (arr[mid] < key) find(arr, mid + 1, en, key);
 	else if (arr[mid] > key) find(arr, st, mid - 1, key);
 }
@@ -21,7 +21,7 @@ int main() {
 	int* arr = calloc(n, sizeof(int));
 	for (int i = 0; i < n; i++)
 		scanf("%d", &arr[i]);
-	find(arr, 0, n - 1, key); // n -1¿¡ ÁÖ¸ñ
+	find(arr, 0, n - 1, key); // n -1ì— ì£¼ëª©
 	if (arr[0] > key) printf(" -1\n");
 	else printf(" %d\n", ans);
 } 
