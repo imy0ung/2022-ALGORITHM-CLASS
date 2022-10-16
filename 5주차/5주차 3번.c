@@ -4,7 +4,7 @@
 #include <math.h>
 #include <time.h>
 #pragma warning (disable:4996)
-// 6ÁÖÂ÷ »çÀü
+// 6ÃÃ–Ã‚Ã· Â»Ã§Ã€Ã¼
 
 int main() {
 	int a, b, n; scanf("%d %d %d", &a, &b, &n);
