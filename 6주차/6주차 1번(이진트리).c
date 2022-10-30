@@ -12,10 +12,10 @@ typedef struct node
 }node;
 
 node* root; int flag = 0;
-// Æ®¸®´Â Àç±Í..
+// íŠ¸ë¦¬ëŠ” ì¬ê·€..
 node* insert(node* root, int data) {
 	if (root == NULL) {
-		root = (node*)malloc(sizeof(node)); // µ¥ÀÌÅÍ ÇÒ´ç
+		root = (node*)malloc(sizeof(node)); // ë°ì´í„° í• ë‹¹
 		root->right = root->left = NULL;
 		root->data = data;
 		return root;
@@ -40,22 +40,22 @@ node* Delete(node* root, int data) {
 	if (root == NULL)
 		return NULL; // base condition
 	if (data < root->data)
-		root->left = Delete(root->left, data); // ³²Àº°Å ´ëÀÔÇØÁÖ´Â ¿ªÇÒ
+		root->left = Delete(root->left, data); // ë‚¨ì€ê±° ëŒ€ì…í•´ì£¼ëŠ” ì—­í• 
 	else if (data > root->data)
-		root->right = Delete(root->right, data); // °ú¿¬ µ¥ÀÌÅÍ ÇÒ´çÀÌ µÇ´Â°¡? = °³³äÀÌÇØÇÏ°í ³Ñ¾î°¡±â
-	// ÇØ´ç ³ëµå¸¦ Ã£´Â´Ù.
+		root->right = Delete(root->right, data); // ê³¼ì—° ë°ì´í„° í• ë‹¹ì´ ë˜ëŠ”ê°€? = ê°œë…ì´í•´í•˜ê³  ë„˜ì–´ê°€ê¸°
+	// í•´ë‹¹ ë…¸ë“œë¥¼ ì°¾ëŠ”ë‹¤.
 	else {
-		// ÀÚ½ÄÀÌ µÎ °³ ÀÏ¶§
+		// ìì‹ì´ ë‘ ê°œ ì¼ë•Œ
 		if (root->left != NULL && root->right != NULL) {
-			tmproot = fMin(root->right); // ¿À¸¥ÂÊ ÀÚ½Ä Áß ¿ŞÂÊÀ¸·Î °è¼Ó °£ ³à¼®
+			tmproot = fMin(root->right); // ì˜¤ë¥¸ìª½ ìì‹ ì¤‘ ì™¼ìª½ìœ¼ë¡œ ê³„ì† ê°„ ë…€ì„
 			root->data = tmproot->data;
-			root->right = Delete(root->right, tmproot->data); // ¹Ø¿¡ ÀÚ½Ä¿¡µµ Á¢±ÙÇØ¼­ »èÁ¦ ÁøÇà
+			root->right = Delete(root->right, tmproot->data); // ë°‘ì— ìì‹ì—ë„ ì ‘ê·¼í•´ì„œ ì‚­ì œ ì§„í–‰
 		}
 		else {
-			// ÀÚ½ÄÀÌ ÇÏ³ª°Å³ª ¾øÀ» ¶§
-			tmproot = (root->left == NULL) ? root->right : root->left; // ¿À¸¥ÂÊÀÌ ºóÁö, ¿ŞÂÊÀÌ ºóÁö
+			// ìì‹ì´ í•˜ë‚˜ê±°ë‚˜ ì—†ì„ ë•Œ
+			tmproot = (root->left == NULL) ? root->right : root->left; // ì˜¤ë¥¸ìª½ì´ ë¹ˆì§€, ì™¼ìª½ì´ ë¹ˆì§€
 			free(root);
-			return tmproot; // ¹İÈ¯ÇØ¼­ Àç±ÍÇÔ¼ö¸¦ ÅëÇØ ´ëÀÔ
+			return tmproot; // ë°˜í™˜í•´ì„œ ì¬ê·€í•¨ìˆ˜ë¥¼ í†µí•´ ëŒ€ì…
 		}
 	}
 	return root;
@@ -101,7 +101,7 @@ int main() {
 			scanf("%d", &x);
 			search(root, x);
 			if (flag != 1)
-				root = Delete(root, x); // ¿Ö root·Î?  ¸¸¾à ´Ù ºó °æ¿ì, NULL°ªÀ» ³Ö¾îÁà¾ßÇÔ
+				root = Delete(root, x); // ì™œ rootë¡œ?  ë§Œì•½ ë‹¤ ë¹ˆ ê²½ìš°, NULLê°’ì„ ë„£ì–´ì¤˜ì•¼í•¨
 		}
 		if (com == 's') {
 			scanf("%d", &x);
