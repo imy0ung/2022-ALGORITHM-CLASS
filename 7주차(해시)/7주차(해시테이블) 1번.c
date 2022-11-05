@@ -3,14 +3,14 @@
 #include <stdbool.h>
 #pragma warning(disable:4996)
 
-// Loadfactor = ¿ø¼ÒÀÇ°³¼ö/Å×ÀÌºíÀÇÅ©±â
+// Loadfactor = ì›ì†Œì˜ê°œìˆ˜/í…Œì´ë¸”ì˜í¬ê¸°
 // Loadfactor <= 1(Chaining), Loadfactor <= 0.75(Open addressing)
 
 // chaining
-// 1. ±¸Á¶Ã¼·Î hashtable ¸¸µç´Ù.
-// 2. insert¿¡¼­ ¸®½ºÆ® ¿ø¸®·Î.
-// 3. delete ¿ª½Ã ¸®½ºÆ® °³³ä
-// 4. print°¡ ¾à°£ Æ¯ÀÌÇÑµ¥, ÀÖ´Â°Å¸¸ Ãâ·ÂÇÏ´Â °ÅÀÓ
+// 1. êµ¬ì¡°ì²´ë¡œ hashtable ë§Œë“ ë‹¤.
+// 2. insertì—ì„œ ë¦¬ìŠ¤íŠ¸ ì›ë¦¬ë¡œ.
+// 3. delete ì—­ì‹œ ë¦¬ìŠ¤íŠ¸ ê°œë…
+// 4. printê°€ ì•½ê°„ íŠ¹ì´í•œë°, ìˆëŠ”ê±°ë§Œ ì¶œë ¥í•˜ëŠ” ê±°ì„
 
 typedef struct node {
 	int id;
@@ -20,19 +20,19 @@ typedef struct node {
 int M;
 
 int my_hash(int x, int M) {
-	return (M + x % M) % M; // À½¼öÀÎ °æ¿ì °í·ÁÇØÁà¾ßÇÔ.
+	return (M + x % M) % M; // ìŒìˆ˜ì¸ ê²½ìš° ê³ ë ¤í•´ì¤˜ì•¼í•¨.
 }
 
 void insert(node* hashTable, int x) {
-	node* p = hashTable + my_hash(x, M); // ÇØ´çÀ§Ä¡¿¡ Á¢±Ù
+	node* p = hashTable + my_hash(x, M); // í•´ë‹¹ìœ„ì¹˜ì— ì ‘ê·¼
 	node* newnode = (node*)malloc(sizeof(node));
 	newnode->id = x;
 	newnode->next = NULL;
 
 	if (p->next == NULL)
-		p->next = newnode; // ¾øÀ¸¸é ³Ö¾îÁÖ°í
+		p->next = newnode; // ì—†ìœ¼ë©´ ë„£ì–´ì£¼ê³ 
 	else {
-		newnode->next = p->next; // ¸®½ºÆ®·Î ³Ö¾îÁÖ±â
+		newnode->next = p->next; // ë¦¬ìŠ¤íŠ¸ë¡œ ë„£ì–´ì£¼ê¸°
 		p->next = newnode;
 	}
 } // o(1)
@@ -41,15 +41,15 @@ int search(int x, node* hashtable) {
 	node* p = hashtable + my_hash(x, M);
 	int searchNum = 0;
 	if (p->next == NULL)
-		return 0; // ÇØ´ç³ëµå°¡ ºñ¾îÀÖÀ¸¸é ¾ø´Â °ÅÀÓ
+		return 0; // í•´ë‹¹ë…¸ë“œê°€ ë¹„ì–´ìˆìœ¼ë©´ ì—†ëŠ” ê±°ì„
 	else {
 		while (1) {
 			p = p->next;
 			searchNum++; 
 			if (p->id == x)
-				return searchNum; // Ã£À¸¸é ¹İÈ¯
+				return searchNum; // ì°¾ìœ¼ë©´ ë°˜í™˜
 			if (p->next == NULL)
-				return 0; // ¾øÀ¸¸é ¾ø´Â °ÅÀÓ
+				return 0; // ì—†ìœ¼ë©´ ì—†ëŠ” ê±°ì„
 		}
 	}
 	return 0;
@@ -60,14 +60,14 @@ int Delete(int x, node* hashTable) {
 	node* q = p;
 	int deleteNum = 0;
 	if (p->next == NULL)
-		return 0; // ºñ¾îÀÖÀ¸¸é ¾ø´Â °Í
+		return 0; // ë¹„ì–´ìˆìœ¼ë©´ ì—†ëŠ” ê²ƒ
 	while (1) {
 		p = p->next;
 		deleteNum++;
 		if (p->id == x) {
-			// ¸®½ºÆ® »èÁ¦ ±¸Çö
+			// ë¦¬ìŠ¤íŠ¸ ì‚­ì œ êµ¬í˜„
 			while (q->next != p)
-				q = q->next; // ÀÌÀü ³ëµå±îÁö detecting
+				q = q->next; // ì´ì „ ë…¸ë“œê¹Œì§€ detecting
 			q->next = p->next; 
 			free(p);
 			return deleteNum;
@@ -81,8 +81,8 @@ int Delete(int x, node* hashTable) {
 void print(node* hashTable) {
 	struct node* p;
 	for (int i = 0; i < M; i++) {
-		p = hashTable + i; // M°³ÀÇ ¸®½ºÆ®¿¡¼­ i¹øÂ° hashtableÁ¢±Ù
-		if (p->next != NULL) { // ÀÖÀ¸¸é Ãâ·Â
+		p = hashTable + i; // Mê°œì˜ ë¦¬ìŠ¤íŠ¸ì—ì„œ ië²ˆì§¸ hashtableì ‘ê·¼
+		if (p->next != NULL) { // ìˆìœ¼ë©´ ì¶œë ¥
 			p = p->next;
 			printf(" %d", p->id); 
 			while (p->next != NULL) {
@@ -99,7 +99,7 @@ int main() {
 	node* hashTable = (node*)malloc(sizeof(node) * M);
 
 	for (int i = 0; i < M; i++) {
-		(hashTable + i)->next = NULL; // hashtable ÃÊ±âÈ­
+		(hashTable + i)->next = NULL; // hashtable ì´ˆê¸°í™”
 	}
 
 	while (1) {
