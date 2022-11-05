@@ -5,8 +5,8 @@
 
 int M, n, q;
 
-//double hashing - clusteringÀ» ¹æÁöÇÏ±â À§ÇØ »õ·Î¿î
-// ÇØ½Ã ÇÔ¼ö¸¦ µĞ °Í.
+//double hashing - clusteringì„ ë°©ì§€í•˜ê¸° ìœ„í•´ ìƒˆë¡œìš´
+// í•´ì‹œ í•¨ìˆ˜ë¥¼ ë‘” ê²ƒ.
 
 int my_hash(int x) {
 	return (M + x % M) % M;
@@ -20,11 +20,11 @@ void insert(int x, int* hashTable) {
 	int idx = my_hash(x);
 	int ridx = 0; int cnt = 0;
 	while (1) {
-		ridx = idx % M; // Å¥Ã³·³ ÀÎµ¦½º¸¦ °»½ÅÇØÁà¾ßÇÔ
+		ridx = idx % M; // íì²˜ëŸ¼ ì¸ë±ìŠ¤ë¥¼ ê°±ì‹ í•´ì¤˜ì•¼í•¨
 		if (hashTable[ridx] == 0) {
 			hashTable[ridx] = x;
 			for (int i = 0; i < cnt; i++)
-				printf("C"); // Ãæµ¹ÀÌ ÀÏ¾î³­ È½¼ö¸¸Å­
+				printf("C"); // ì¶©ëŒì´ ì¼ì–´ë‚œ íšŸìˆ˜ë§Œí¼
 			printf("%d\n", ridx);
 			return;
 		}
@@ -42,11 +42,11 @@ void search(int x, int* hashTable) {
 		ridx = idx % M;
 		if (hashTable[ridx] == 0) {
 			printf("-1\n");
-			return; // Ã£Áö ¸øÇÑ »óÈ²
+			return; // ì°¾ì§€ ëª»í•œ ìƒí™©
 		}
 		else if (hashTable[ridx] == x) {
 			printf("%d %d\n", ridx, hashTable[ridx]);
-			return; // Ã£Àº »óÈ²
+			return; // ì°¾ì€ ìƒí™©
 		}
 		else idx += doubleHash(x);
 	}
