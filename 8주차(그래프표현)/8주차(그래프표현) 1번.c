@@ -4,9 +4,9 @@
 #include <malloc.h>
 #pragma warning(disable:4996)
 // Undirected Graph
-// Á¤Á¡ v, °£¼± e
-// 1.ÀÎÁ¢Çà·Ä 2.ÀÎÁ¢¸®½ºÆ®
-// Á¤Á¡ÀÌ ¸¹°í °£¼±ÀÌ ÀûÀ» ¶§ ÀÎÁ¢¸®½ºÆ®ÀÌ °ø°£Àı¾à¿¡ À¯¸®
+// ì •ì  v, ê°„ì„  e
+// 1.ì¸ì ‘í–‰ë ¬ 2.ì¸ì ‘ë¦¬ìŠ¤íŠ¸
+// ì •ì ì´ ë§ê³  ê°„ì„ ì´ ì ì„ ë•Œ ì¸ì ‘ë¦¬ìŠ¤íŠ¸ì´ ê³µê°„ì ˆì•½ì— ìœ ë¦¬
 
 
 typedef struct {
@@ -24,7 +24,7 @@ void makeGraph() {
 	adj[4] = (pair*)malloc(sizeof(pair) * 1);
 	adj[5] = (pair*)malloc(sizeof(pair) * 3);
 	adj[6] = (pair*)malloc(sizeof(pair) * 2);
-	// µ¿ÀûÇÒ´çÀ¸·Î °ø°£Àı¾àÇÏ¸é¼­, ÀÎÁ¢¸®½ºÆ® ¸¸µé±â
+	// ë™ì í• ë‹¹ìœ¼ë¡œ ê³µê°„ì ˆì•½í•˜ë©´ì„œ, ì¸ì ‘ë¦¬ìŠ¤íŠ¸ ë§Œë“¤ê¸°
 
 	adj[1][0].data = 2;
 	adj[1][0].weight = 1;
@@ -97,7 +97,7 @@ int main() {
 		if (command == 'a') {
 			scanf("%d", &x);
 			if (adj[x] == NULL)
-				printf("-1"); // ¾øÀ¸¸é -1 Ãâ·Â
+				printf("-1"); // ì—†ìœ¼ë©´ -1 ì¶œë ¥
 			else {
 				for (int i = 0; i < edge[x]; i++)
 					printf(" %d %d", adj[x][i].data, adj[x][i].weight);
@@ -110,17 +110,17 @@ int main() {
 			if (z != 0) {
 				for (int i = 0; i < edge[x]; i++) {
 					if (adj[x][i].data == y) {
-						adj[x][i].weight = z;// ÀÖ´Ù¸é °¡ÁßÄ¡ º¯°æ
+						adj[x][i].weight = z;// ìˆë‹¤ë©´ ê°€ì¤‘ì¹˜ ë³€ê²½
 						flag = 1;
 					}
 				}
 				for (int i = 0; i < edge[y]; i++) {
 					if (adj[y][i].data == x) {
-						adj[y][i].weight = z;// ÀÖ´Ù¸é °¡ÁßÄ¡ º¯°æ
+						adj[y][i].weight = z;// ìˆë‹¤ë©´ ê°€ì¤‘ì¹˜ ë³€ê²½
 						flag = 1;
 					}
 				}
-				// ¸øÃ£¾ÒÀ» ¶§ Ãß°¡ÇØÁÖ±â
+				// ëª»ì°¾ì•˜ì„ ë•Œ ì¶”ê°€í•´ì£¼ê¸°
 				if (flag == 0) {
 					if (adj[x] == NULL || adj[y] == NULL) {
 						printf("-1\n");
@@ -148,7 +148,7 @@ int main() {
 					adj[x][edge[x] - 1].weight = z;
 					adj[y][edge[y] - 1].weight = z;
 
-					sort(x); sort(y); // Á¤·Ä
+					sort(x); sort(y); // ì •ë ¬
 				}
 			}
 
