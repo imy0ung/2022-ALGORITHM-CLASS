@@ -5,15 +5,15 @@
 #pragma warning(disable:4996)
 
 //type of char
-char init[10000]; // ¾î¶² ¹®ÀÚ°¡ ¿Íµµ ±âÁØÀÌ µÉ ¼ö ÀÖ°Ô
+char init[10000]; // ì–´ë–¤ ë¬¸ìê°€ ì™€ë„ ê¸°ì¤€ì´ ë  ìˆ˜ ìˆê²Œ
 int sz = 0;
 
 //graph
 char* adj[100];
-char edge[1000][2]; // °£¼± °£ Á¤º¸
-int idx[1000]; // ÀÎµ¦½º °³¼ö
-int inputDeg[10000]; // indegreeÀÇ ¼ö
-int outputDeg[10000]; // outputdegreeÀÇ ¼ö
+char edge[1000][2]; // ê°„ì„  ê°„ ì •ë³´
+int idx[1000]; // ì¸ë±ìŠ¤ ê°œìˆ˜
+int inputDeg[10000]; // indegreeì˜ ìˆ˜
+int outputDeg[10000]; // outputdegreeì˜ ìˆ˜
 
 // queue
 char queue[10005];
@@ -38,12 +38,12 @@ int isEmpty() {
 
 int main() {
 	int v, e;
-	scanf("%d", &v); // vertexÀÇ °³¼ö ÀÔ·Â¹Ş±â
+	scanf("%d", &v); // vertexì˜ ê°œìˆ˜ ì…ë ¥ë°›ê¸°
 	for (int i = 0; i < v; i++) {
 		getchar();
-		scanf("%c", &init[sz++]); // ±âÁØÀÌ µÇ´Â ¹®ÀÚ init[0]
+		scanf("%c", &init[sz++]); // ê¸°ì¤€ì´ ë˜ëŠ” ë¬¸ì init[0]
 	}
-	scanf("%d", &e); // edge°³¼ö ¹Ş±â
+	scanf("%d", &e); // edgeê°œìˆ˜ ë°›ê¸°
 	for (int i = 1; i <= e; i++) {
 		getchar();
 		scanf("%c %c", &edge[i][0], &edge[i][1]);
@@ -51,15 +51,15 @@ int main() {
 		inputDeg[edge[i][1] - init[0] + 1]++; // outputDegree
 	}
 	for (int i = 1; i <= v; i++)
-		adj[i] = malloc(outputDeg[i] * sizeof(char)); //graph´Â outputdegree ¸¸Å­ ÇÒ´ç
+		adj[i] = malloc(outputDeg[i] * sizeof(char)); //graphëŠ” outputdegree ë§Œí¼ í• ë‹¹
 	for (int i = 1; i <= e; i++) {
 		int u = edge[i][0] - init[0] + 1; char v = edge[i][1];
 		adj[u][idx[u]++] = v;
 	}
-	// deg = input degreeÀÇ °³¼ö, adj[u] = ¹æÇâgraphÀÇ Á¤º¸
+	// deg = input degreeì˜ ê°œìˆ˜, adj[u] = ë°©í–¥graphì˜ ì •ë³´
 
 	for (int i = 1; i <= v; i++) {
-		if (inputDeg[i] == 0) push(i + init[0] - 1); // inputDegree°¡ ¾øÀ¸¸é push
+		if (inputDeg[i] == 0) push(i + init[0] - 1); // inputDegreeê°€ ì—†ìœ¼ë©´ push
 	}
 
 	while (isEmpty() != -1) {
@@ -72,7 +72,7 @@ int main() {
 		}
 	}
 
-	if (cnt != v) printf("0"); // cycleÀÌ ÀÖ´Ù¸é Á¤Á¡À» ´Ù µ¹Áö¸øÇÔ
+	if (cnt != v) printf("0"); // cycleì´ ìˆë‹¤ë©´ ì •ì ì„ ë‹¤ ëŒì§€ëª»í•¨
 
 	else {
 		for (int i = 0; i < cnt; i++)
