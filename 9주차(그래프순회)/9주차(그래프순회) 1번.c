@@ -6,8 +6,8 @@
 // DFS
 
 int edge[1000][2];
-int deg[1000]; // Á¤Á¡ º° Â÷¼ö 
-int* adj[1000]; // adj[i]¿¡¼­ »õ·Î¿î Á¤Á¡À» Ãß°¡ÇÒ ¶§ÀÇ À§Ä¡
+int deg[1000]; // ì •ì  ë³„ ì°¨ìˆ˜ 
+int* adj[1000]; // adj[i]ì—ì„œ ìƒˆë¡œìš´ ì •ì ì„ ì¶”ê°€í•  ë•Œì˜ ìœ„ì¹˜
 int idx[1000];
 
 int stack[1000];
@@ -42,7 +42,7 @@ int main() {
 	for (int i = 0; i < e; i++) {
 		scanf("%d %d", &edge[i][0], &edge[i][1]);
 		deg[edge[i][0]]++; deg[edge[i][1]]++;
-	} // °£¼±ÀÇ °³¼ö ¸¸Å­
+	} // ê°„ì„ ì˜ ê°œìˆ˜ ë§Œí¼
 	for (int i = 1; i <= v; i++)
 		adj[i] = malloc(deg[i] * sizeof(int));
 	for (int i = 0; i < e; i++) {
@@ -51,7 +51,7 @@ int main() {
 		idx[u]++;
 		adj[v][idx[v]] = u;
 		idx[v]++;
-	} // ÀÎÁ¢¸®½ºÆ®¿¡ ÀúÀå
+	} // ì¸ì ‘ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 
 	for (int i = 1; i <= v; i++)
 		sort(i);
