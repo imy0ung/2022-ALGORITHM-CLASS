@@ -5,7 +5,7 @@
 #pragma warning(disable:4996)
 // BFS
 
-int map[101][101]; // 101�� �ƴ϶�? 
+int map[101][101]; // 101ÀÌ ¾Æ´Ï¶ó¼­? 
 int queue[10000];
 int vis[10000];
 int front = 0; int rear = 0;
@@ -25,7 +25,7 @@ int isEmpty() {
 
 void bfs(int s, int v) {
 	push(s);
-	vis[s] = 1; // �湮ó��
+	vis[s] = 1; // ¹æ¹®Ã³¸®
 	while (isEmpty() != -1) {
 		int cur = queue[front]; pop();
 		printf("%d\n", cur);
