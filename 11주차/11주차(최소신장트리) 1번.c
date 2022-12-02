@@ -6,7 +6,7 @@
 
 // MST (minimum spanning tree)
 // Prim algorithm
-// ¸Å¹ø ÀÛÀº °£¼±À» Ã£¾Æ¼­ ¿¬°áÇØÁÖ±â. ½ÃÀÛÁ¡ÀÌ ÇÊ¿äÇÒ µí? Priority Queue¸¦ »ç¿ëÇØ¼­ ÃÖ¼Ò°ªÀ» Ã£±â
+// ë§¤ë²ˆ ì‘ì€ ê°„ì„ ì„ ì°¾ì•„ì„œ ì—°ê²°í•´ì£¼ê¸°. ì‹œì‘ì ì´ í•„ìš”í•  ë“¯? Priority Queueë¥¼ ì‚¬ìš©í•´ì„œ ìµœì†Œê°’ì„ ì°¾ê¸°
 
 typedef struct {
 	int v1; int v2; int cost;
@@ -16,10 +16,10 @@ typedef struct {
 	int v; int cost;
 }adj;
 
-int n, m, pqNum, ans; // Á¤Á¡ÀÇ ¼ö, °£¼±ÀÇ ¼ö, pqÀÇ ¼ö, ÃÖ¼Òºñ¿ë
-int chk[10000]; // Á¤Á¡ÀÌ ÃÖ¼Ò½ÅÀåÆ®¸®¿¡ Æ÷ÇÔµÇ¾îÀÖ´Â°¡?
-Pgraph pq[10005]; // pqÀÇ¹è¿­
-adj vertex[1000][1000]; // Á¤Á¡µé
+int n, m, pqNum, ans; // ì •ì ì˜ ìˆ˜, ê°„ì„ ì˜ ìˆ˜, pqì˜ ìˆ˜, ìµœì†Œë¹„ìš©
+int chk[10000]; // ì •ì ì´ ìµœì†Œì‹ ì¥íŠ¸ë¦¬ì— í¬í•¨ë˜ì–´ìˆëŠ”ê°€?
+Pgraph pq[10005]; // pqì˜ë°°ì—´
+adj vertex[1000][1000]; // ì •ì ë“¤
 int outDegree[10005];
 
 void sort() {
@@ -44,11 +44,11 @@ int main() {
 		vertex[b][outDegree[b]].v = a; vertex[b][outDegree[b]].cost = cost;
 		outDegree[a]++; outDegree[b]++;
 	}
-	chk[1] = 1;// 1¹øºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î
+	chk[1] = 1;// 1ë²ˆë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ
 	for (int i = 0; i < outDegree[1]; i++) {
 		pq[i].v1 = 1; pq[i].v2 = vertex[1][i].v; pq[i].cost = vertex[1][i].cost;
 		pqNum++;
-	} // 1°ú °£¼±À» pq¿¡ ÀúÀå
+	} // 1ê³¼ ê°„ì„ ì„ pqì— ì €ì¥
 
 	sort(); // priority queue
 	
@@ -56,21 +56,21 @@ int main() {
 	printf(" 1");
 	while (cnt < n - 1) {
 		int a, b, cost;
-		a = pq[pqNum - 1].v1; b = pq[pqNum - 1].v2; cost = pq[pqNum - 1].cost; pqNum--; // pqÀÇ pop°úÁ¤ 
-		if (chk[b]) continue; // ¸¸¾à ¹æ¹®ÇÑ Á¤Á¡ÀÌ¸é ³Ñ±â±â(cycleÀÌ ¹ß»ıÇÏ¹Ç·Î)
+		a = pq[pqNum - 1].v1; b = pq[pqNum - 1].v2; cost = pq[pqNum - 1].cost; pqNum--; // pqì˜ popê³¼ì • 
+		if (chk[b]) continue; // ë§Œì•½ ë°©ë¬¸í•œ ì •ì ì´ë©´ ë„˜ê¸°ê¸°(cycleì´ ë°œìƒí•˜ë¯€ë¡œ)
 		printf(" %d", b);
 		ans += cost; 
-		chk[b] = 1; // check ÇØÁÖ°í 
-		cnt++; // µ¹¸° °³¼ö Áõ°¡
+		chk[b] = 1; // check í•´ì£¼ê³  
+		cnt++; // ëŒë¦° ê°œìˆ˜ ì¦ê°€
 		for (int i = 0; i < outDegree[b]; i++) {
-			if (!chk[vertex[b][i].v]) { // ¸¸¾à ¹æ¹®ÇÑ Á¤Á¡ÀÌ ¾Æ´Ï¶ó¸é pq¿¡ ³Ö¾îÁÖ±â
+			if (!chk[vertex[b][i].v]) { // ë§Œì•½ ë°©ë¬¸í•œ ì •ì ì´ ì•„ë‹ˆë¼ë©´ pqì— ë„£ì–´ì£¼ê¸°
 				pq[pqNum].v1 = b;
 				pq[pqNum].v2 = vertex[b][i].v;
 				pq[pqNum].cost = vertex[b][i].cost;
 				pqNum++;
 			}
 		}
-		sort(); // pq¸¦ Á¤·ÄµÈ »óÅÂ·Î À¯Áö
+		sort(); // pqë¥¼ ì •ë ¬ëœ ìƒíƒœë¡œ ìœ ì§€
 	}
 	printf("\n%d", ans);
 }
