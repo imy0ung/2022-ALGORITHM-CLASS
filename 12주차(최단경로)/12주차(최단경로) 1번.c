@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-#define INF 1e9+10 // ¹«ÇÑ´ë
+#define INF 1e9+10 // ë¬´í•œëŒ€
 // Dijkstra
-// : ÇÏ³ªÀÇ ½ÃÀÛÁ¡À¸·ÎºÎÅÍ ´Ù¸¥ ¸ğµç Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®¸¦ ±¸ÇÏ´Â ¾Ë°í¸®Áò
+// : í•˜ë‚˜ì˜ ì‹œì‘ì ìœ¼ë¡œë¶€í„° ë‹¤ë¥¸ ëª¨ë“  ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ë¥¼ êµ¬í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 
 typedef struct {
 	int v; int cost;
@@ -56,17 +56,17 @@ int main() {
 		adj[b][outDegree[b]].v = a; adj[b][outDegree[b]].cost = cost;
 		outDegree[a]++; outDegree[b]++;
 	}
-	d[s] = 0; // Å×ÀÌºí ½ÃÀÛÁ¡Àº °¡ÁßÄ¡°¡ 0ÀÌ´Ï±î
-	push(s, d[s]); // ¿ì¼± ¼øÀ§ Å¥¿¡, ½ÃÀÛÁ¡°ú °¡ÁßÄ¡¸¦ ³Ö¾îÁÜ
+	d[s] = 0; // í…Œì´ë¸” ì‹œì‘ì ì€ ê°€ì¤‘ì¹˜ê°€ 0ì´ë‹ˆê¹Œ
+	push(s, d[s]); // ìš°ì„  ìˆœìœ„ íì—, ì‹œì‘ì ê³¼ ê°€ì¤‘ì¹˜ë¥¼ ë„£ì–´ì¤Œ
 	while (!pqEmpty()) {
 		graph cur = pq[pqNum - 1]; pop();
-		if (d[cur.v] != cur.cost) continue; // °°Áö ¾Ê´Ù¸é ¾²·¹±â °ª
+		if (d[cur.v] != cur.cost) continue; // ê°™ì§€ ì•Šë‹¤ë©´ ì“°ë ˆê¸° ê°’
 		for (int i = 0; i < outDegree[cur.v]; i++) {
 			if (d[adj[cur.v][i].v] <= d[cur.v] + adj[cur.v][i].cost) continue;
 			d[adj[cur.v][i].v] = d[cur.v] + adj[cur.v][i].cost;
 			push(adj[cur.v][i].v, d[adj[cur.v][i].v]);
 		}
-		sort(); // ¿ì¼±¼øÀ§ Å¥ Á¤·Ä
+		sort(); // ìš°ì„ ìˆœìœ„ í ì •ë ¬
 	}
 	for (int i = 1; i <= n; i++) {	
 		if (d[i] == INF || i == s) continue;
