@@ -27,13 +27,13 @@ void sort(edge* arr) {
 }
 
 int find(int x) {
-	if (p[x] < 0) return x; // ¿¬°áÀÌ ¾ÈµÇ¾îÀÖÀ½
-	return p[x] = find(p[x]); // ¿¬°áµÇ¾îÀÖ´Ù¸é ÃÖÁ¾ ºÎ¸ð¸¦ Ã£À½
+	if (p[x] < 0) return x; // ì—°ê²°ì´ ì•ˆë˜ì–´ìžˆìŒ
+	return p[x] = find(p[x]); // ì—°ê²°ë˜ì–´ìžˆë‹¤ë©´ ìµœì¢… ë¶€ëª¨ë¥¼ ì°¾ìŒ
 }
 
 bool is_diff_group(int u, int v) {
 	u = find(u); v = find(v);
-	if (u == v) return 0; // °°´Ù¸é ºÎ¸ð°¡ °°Àº°Å°í cycleÀÌ Á¸ÀçÇÔ
+	if (u == v) return 0; // ê°™ë‹¤ë©´ ë¶€ëª¨ê°€ ê°™ì€ê±°ê³  cycleì´ ì¡´ìž¬í•¨
 	else if (u < v) p[v] = u;
 	else p[u] = v;
 	return 1;
@@ -54,10 +54,10 @@ int main() {
 		int a = graphData[i].v1;
 		int b = graphData[i].v2;
 		int c = graphData[i].cost;
-		if (!is_diff_group(a, b)) continue; // ¸¸¾à °°Àº ±×·ìÀÌ¸é
+		if (!is_diff_group(a, b)) continue; // ë§Œì•½ ê°™ì€ ê·¸ë£¹ì´ë©´
 		printf(" %d", c);
 		ans += c; cnt++;
-		if (cnt == n - 1) break; // ÃÖ¼Ò½ÅÀåÆ®¸®´Â v-1°³ÀÇ °£¼±À¸·Î ÀÌ·ç¾îÁ®ÀÖÀ½
+		if (cnt == n - 1) break; // ìµœì†Œì‹ ìž¥íŠ¸ë¦¬ëŠ” v-1ê°œì˜ ê°„ì„ ìœ¼ë¡œ ì´ë£¨ì–´ì ¸ìžˆìŒ
 	}
 	printf("\n%d", ans);
 }
