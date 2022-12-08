@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-#define INF 1e9+10 // ¹«ÇÑ´ë
+#define INF 1e9+10 // ë¬´í•œëŒ€
 // Dijkstra
-// : ÇÏ³ªÀÇ ½ÃÀÛÁ¡À¸·ÎºÎÅÍ ´Ù¸¥ ¸ðµç Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®¸¦ ±¸ÇÏ´Â ¾Ë°í¸®Áò
+// : í•˜ë‚˜ì˜ ì‹œìž‘ì ìœ¼ë¡œë¶€í„° ë‹¤ë¥¸ ëª¨ë“  ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ë¥¼ êµ¬í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 
 typedef struct {
 	int v;
@@ -76,4 +76,4 @@ int main() {
 		sort();
 	}
 	printf("\n%d", ans);
-} // °£¼± ³Ö°í Á¦ÀÏ ÀÛÀº°Å »Ì°í ´Ù½Ã Çª½ÃÇÏ°í -> ¹Ýº¹ chk¹è¿­À»¾¸ (why? ½ÎÀÌÅ¬¹æÁö)
+} // ê°„ì„  ë„£ê³  ì œì¼ ìž‘ì€ê±° ë½‘ê³  ë‹¤ì‹œ í‘¸ì‹œí•˜ê³  -> ë°˜ë³µ chkë°°ì—´ì„ì”€ (why? ì‹¸ì´í´ë°©ì§€)
