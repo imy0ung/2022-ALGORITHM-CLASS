@@ -3,20 +3,20 @@
 #include <stdbool.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-#define INF 1e9+10 // ¹«ÇÑ´ë
+#define INF 1e9+10 // ë¬´í•œëŒ€
 
 typedef struct {
 	int v, cost;
 }graph;
 
-// ±×¸®µğ ¾Ë°í¸®Áò
-// dÅ×ÀÌºí °»½ÅÇÏ°í, pq °»½ÅÇÏ°í, °¥¶§¸¶´Ù ÃÖ´Ü°Å¸®¸¦ °è»ê
-// ½Ã°£º¹Àâµµ´Â O(n+m)
+// ê·¸ë¦¬ë”” ì•Œê³ ë¦¬ì¦˜
+// dí…Œì´ë¸” ê°±ì‹ í•˜ê³ , pq ê°±ì‹ í•˜ê³ , ê°ˆë•Œë§ˆë‹¤ ìµœë‹¨ê±°ë¦¬ë¥¼ ê³„ì‚°
+// ì‹œê°„ë³µì¡ë„ëŠ” O(n+m)
 
 graph adj[1000][1000];
-graph pq[1000]; // ÇöÀç ³ëµå±îÁöÀÇ ÃÖ´Ü°Å¸®¸¦ °è¼ÓÇØ¼­ ÀúÀå
+graph pq[1000]; // í˜„ì¬ ë…¸ë“œê¹Œì§€ì˜ ìµœë‹¨ê±°ë¦¬ë¥¼ ê³„ì†í•´ì„œ ì €ì¥
 int deg[1000];
-int d[1000]; // distance ¹è¿­
+int d[1000]; // distance ë°°ì—´
 int pqNum;
 int n, m, s;
 
@@ -59,10 +59,10 @@ int main() {
 	}
 	d[s] = 0; push(s, d[s]);
 	while (!isEmpty()) {
-		// curÀÌ È®Á¤µÈ ³ëµå
-		// adj ÀÎÁ¢ Á¤Á¡µé // d°¡ °è¼ÓÇØ¼­ ÀúÀåÇÏ´Â³ğ
+		// curì´ í™•ì •ëœ ë…¸ë“œ
+		// adj ì¸ì ‘ ì •ì ë“¤ // dê°€ ê³„ì†í•´ì„œ ì €ì¥í•˜ëŠ”ë†ˆ
 		graph cur = pq[pqNum - 1]; pop();
-		if (d[cur.v] != cur.cost) continue; // È®Á¤µÈ ³ëµå¿¡°Ô¸¸
+		if (d[cur.v] != cur.cost) continue; // í™•ì •ëœ ë…¸ë“œì—ê²Œë§Œ
 		for (int i = 0; i < deg[cur.v]; i++) {
 			if (d[adj[cur.v][i].v] <= d[cur.v] + adj[cur.v][i].cost) continue;
 			d[adj[cur.v][i].v] = d[cur.v] + adj[cur.v][i].cost;
