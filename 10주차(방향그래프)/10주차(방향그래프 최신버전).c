@@ -3,16 +3,16 @@
 #include <stdbool.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-#define INF 1e9+10 // ¹«ÇÑ´ë
+#define INF 1e9+10 // ë¬´í•œëŒ€
 
-char adj[100][1000]; //ÀÎÁ¢ Çà·Ä
-char vertexs[1000]; // Á¤Á¡µé
-char queue[10005]; //Å¥¹è¿­
-char ans[1000]; // ´ä¹è¿­
+char adj[100][1000]; //ì¸ì ‘ í–‰ë ¬
+char vertexs[1000]; // ì •ì ë“¤
+char queue[10005]; //íë°°ì—´
+char ans[1000]; // ë‹µë°°ì—´
 int front = 0;
 int rear = 0;
-int outDegree[10000]; // ¾Æ¿ôµğ±×¸®
-int inDegree[10000]; // ÀÎµğ±×¸®
+int outDegree[10000]; // ì•„ì›ƒë””ê·¸ë¦¬
+int inDegree[10000]; // ì¸ë””ê·¸ë¦¬
 
 void push(char x) {
 	queue[rear++] = x;
@@ -38,12 +38,12 @@ int main() {
 		getchar();
 		char a; char b;
 		scanf("%c %c", &a, &b);
-		adj[a][outDegree[a]] = b; // ¾îÂ÷ÇÇ ¾Æ½ºÅ°ÄÚµå ÇØºÃÀÚ 100ÀÌ´Ï±î
+		adj[a][outDegree[a]] = b; // ì–´ì°¨í”¼ ì•„ìŠ¤í‚¤ì½”ë“œ í•´ë´¤ì 100ì´ë‹ˆê¹Œ
 		outDegree[a]++; inDegree[b]++;
 	}
 
 	for (int i = vertexs[0]; i <= vertexs[n - 1]; i++) {
-		if (inDegree[i] == 0) // ÀÎµå¸®±â 0ÀÎ³ğµé Çª½¬
+		if (inDegree[i] == 0) // ì¸ë“œë¦¬ê¸° 0ì¸ë†ˆë“¤ í‘¸ì‰¬
 			push(i);
 	}
 
@@ -53,13 +53,13 @@ int main() {
 		char cur = queue[front]; pop();
 		ans[cnt++] = cur;
 		for (int i = outDegree[cur] - 1; i >= 0; i--) {
-			inDegree[adj[cur][i]]--; // inDegree »©ÁÖ±â
+			inDegree[adj[cur][i]]--; // inDegree ë¹¼ì£¼ê¸°
 			if (inDegree[adj[cur][i]] == 0)
 				push(adj[cur][i]);
 		}
 	}
 
-	if (cnt != n) printf("0"); // ½ÎÀÌÅ¬ÀÓ
+	if (cnt != n) printf("0"); // ì‹¸ì´í´ì„
 	else
 		for (int i = 0; i < cnt; i++)
 			printf("%c ", ans[i]);
