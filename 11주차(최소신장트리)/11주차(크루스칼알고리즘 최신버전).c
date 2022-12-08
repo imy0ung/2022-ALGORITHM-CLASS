@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <malloc.h>
 #pragma warning(disable:4996)
-#define INF 1e9+10 // ¹«ÇÑ´ë
+#define INF 1e9+10 // ë¬´í•œëŒ€
 // Dijkstra
-// : ÇÏ³ªÀÇ ½ÃÀÛÁ¡À¸·ÎºÎÅÍ ´Ù¸¥ ¸ğµç Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®¸¦ ±¸ÇÏ´Â ¾Ë°í¸®Áò
+// : í•˜ë‚˜ì˜ ì‹œì‘ì ìœ¼ë¡œë¶€í„° ë‹¤ë¥¸ ëª¨ë“  ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ë¥¼ êµ¬í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 
 typedef struct {
 	int v1;
@@ -32,13 +32,13 @@ void sort() {
 }
 
 int find(int x) {
-	if (p[x] < 0) return x; // À½¼ö¸é ÀÌ¾îÁ®ÀÖÁö¾ÊÀ½
+	if (p[x] < 0) return x; // ìŒìˆ˜ë©´ ì´ì–´ì ¸ìˆì§€ì•ŠìŒ
 	return p[x] = find(p[x]);
 }
 
 int isDiff(int u, int v) {
 	u = find(u); v = find(v);
-    if (u == v) return 0; // ºÎ¸ğ°¡ °°Àº »óÈ²
+    if (u == v) return 0; // ë¶€ëª¨ê°€ ê°™ì€ ìƒí™©
 	else if (u < v) p[v] = u;
 	else p[u] = v;
 	return 1; 
