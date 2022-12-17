@@ -9,8 +9,8 @@ typedef struct {
 	int v, cost;
 }graph;
 
-int n, m, s; // nÀº Á¤Á¡ÀÇ °³¼ö, mÀº °£¼±ÀÇ °³¼ö
-graph adj[105][105]; // adjacency matrix ¼±¾ğ
+int n, m, s; // nì€ ì •ì ì˜ ê°œìˆ˜, mì€ ê°„ì„ ì˜ ê°œìˆ˜
+graph adj[105][105]; // adjacency matrix ì„ ì–¸
 int outdeg[1000];
 int d[1000];
 
@@ -27,14 +27,14 @@ int main() {
 	d[s] = 0;
 
 	for (int i = 1; i <= n; i++) {
-		// ÇÑ Á¤Á¡¿¡ ´ëÇØ,
+		// í•œ ì •ì ì— ëŒ€í•´,
 		for (int j = 1; j <= n; j++) {
-			// ±× Á¤Á¡À» °ÅÃÄ¼­ °¡´Â °æ·Î¸¦ ´Ù °è»êÇÑ´Ù.
+			// ê·¸ ì •ì ì„ ê±°ì³ì„œ ê°€ëŠ” ê²½ë¡œë¥¼ ë‹¤ ê³„ì‚°í•œë‹¤.
 			for (int k = 0; k < outdeg[j]; k++) {
-				// Á¤Á¡¿¡ ´ëÇÑ °£¼±¿¡ Á¤º¸
+				// ì •ì ì— ëŒ€í•œ ê°„ì„ ì— ì •ë³´
 				int next = adj[j][k].v;
 				int cost = adj[j][k].cost;
-				// j±îÁö °¡´Â °£¼±ÀÌ¶û µå´Â ºñ¿ëÀ» ºñ±³
+				// jê¹Œì§€ ê°€ëŠ” ê°„ì„ ì´ë‘ ë“œëŠ” ë¹„ìš©ì„ ë¹„êµ
 				if (d[j] != INF && d[next] > d[j] + cost)
 					d[next] = d[j] + cost;
 			}
